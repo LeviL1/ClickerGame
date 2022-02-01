@@ -7,6 +7,7 @@ public class ResourceTracker : MonoBehaviour
     //values for resources 
     public float Wishes, Money;
     public float GainPerSecond;
+  public float wishesPerSecond;
     public Money currentMoney;
     public float AmountToIncreamentMoney;
     public float AmountToIncreamentWishes;
@@ -15,10 +16,21 @@ public class ResourceTracker : MonoBehaviour
     public List<Money> coins = new List<Money>();
 
     public static ResourceTracker instance;
-    public void Start()
-    {
-        
-    }
+
+  private void Awake()
+  {
+    
+      if (ResourceTracker.instance == null)
+      {
+        ResourceTracker.instance = this;
+      }
+      else if (ResourceTracker.instance != this)
+      {
+        Destroy(this);
+      }
+    
+  }
+   
     private void FixedUpdate()
     {
         if (currentMoney.name == "Penny")
@@ -58,5 +70,10 @@ public class ResourceTracker : MonoBehaviour
             
         
     }
+  public void GainMoneyPerSecAndWishes() 
+  {
+    Money += GainPerSecond;
+    Wishes += wishesPerSecond;
+  }
 
 }

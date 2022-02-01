@@ -17,5 +17,9 @@ public class ChangeMoneyTxt : MonoBehaviour
         WishesText.text = wishesToAdd.ToString();
         
     }
+  private void Update()
+  {
+    updateMoneyAndWishes();
+  }
 
 }

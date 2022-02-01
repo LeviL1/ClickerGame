@@ -11,4 +11,5 @@ public class Money : ScriptableObject
     public float amountToIncreamentWishes;
     [SerializeField]
     private Sprite coinImage;
+
 }
