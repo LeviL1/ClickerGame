@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb58e4cc6a048fb45a8d44c1e01cae82, type: 3}
-  m_Name: GoldCoin
+  m_Name: Silver
   m_EditorClassIdentifier: 
-  amountToIncreamentMoney: 750
+  amountToIncreamentMoney: 250
   amountToIncreamentWishes: 1
-  coinImage: {fileID: 21300000, guid: 8ec65f142de90304eba6116f01415044, type: 3}
-  upgradeCost: 10000
-  nextTier: {fileID: 11400000, guid: 91b884124d76c484e93cf5cdb3c7ab83, type: 2}
+  coinImage: {fileID: 21300000, guid: 5e7e593f83e46664192b8a29351b5ed7, type: 3}
+  upgradeCost: 500
+  nextTier: {fileID: 11400000, guid: 1938ad8bb652b8a46b32cfed350324e9, type: 2}

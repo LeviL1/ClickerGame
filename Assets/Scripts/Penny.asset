@@ -15,3 +15,5 @@ MonoBehaviour:
   amountToIncreamentMoney: 1
   amountToIncreamentWishes: 1
   coinImage: {fileID: 21300000, guid: 81c7c712efb80f94f935d206f56b2907, type: 3}
+  upgradeCost: 50
+  nextTier: {fileID: 11400000, guid: 17dbfb6d10cb422428bddb50f890839a, type: 2}

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb58e4cc6a048fb45a8d44c1e01cae82, type: 3}
-  m_Name: GoldCoin
+  m_Name: Uranium
   m_EditorClassIdentifier: 
-  amountToIncreamentMoney: 750
+  amountToIncreamentMoney: 100000
   amountToIncreamentWishes: 1
-  coinImage: {fileID: 21300000, guid: 8ec65f142de90304eba6116f01415044, type: 3}
-  upgradeCost: 10000
-  nextTier: {fileID: 11400000, guid: 91b884124d76c484e93cf5cdb3c7ab83, type: 2}
+  coinImage: {fileID: 21300000, guid: ad7852b911e103a4cac70bdd997cb25d, type: 3}
+  upgradeCost: 10000000
+  nextTier: {fileID: 0}

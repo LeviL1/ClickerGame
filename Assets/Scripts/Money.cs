@@ -10,6 +10,7 @@ public class Money : ScriptableObject
     [SerializeField]
     public float amountToIncreamentWishes;
     [SerializeField]
-    private Sprite coinImage;
-
+    public Sprite coinImage;
+  public float upgradeCost;
+  public Money nextTier;
 }
