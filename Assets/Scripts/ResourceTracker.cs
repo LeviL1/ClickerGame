@@ -23,7 +23,11 @@ public class ResourceTracker : MonoBehaviour
   public static ResourceTracker instance;
   public Image CurrentCoin;
   public Button resetButton;
-
+  public Canvas creditsImage;
+  public AudioSource aud;
+  public Canvas passiveGain;
+  public float resets;
+  public Text resetstxt;
   private void Awake()
   {
     
@@ -39,11 +43,14 @@ public class ResourceTracker : MonoBehaviour
   }
   private void Start()
   {
+    passiveGain.enabled = false;
+    creditsImage.enabled = false;
     resetButton.enabled = false;
   }
 
   private void Update()
   {
+    resetstxt.text = resets.ToString();
     CurrentCoin.sprite = currentMoney.coinImage;
     MPSupgrade.text = upgradeMPScost.ToString();
     WPSupgrade.text = upgradeWPScost.ToString();
@@ -52,18 +59,21 @@ public class ResourceTracker : MonoBehaviour
       AmountToIncreamentMoney = currentMoney.amountToIncreamentMoney;
       AmountToIncreamentWishes = currentMoney.amountToIncreamentWishes;
       upgradeCost.text = currentMoney.upgradeCost.ToString();
+      resetButton.enabled = false;
     }
     else if (currentMoney.name == "Nickel")
     {
       AmountToIncreamentMoney = currentMoney.amountToIncreamentMoney;
       AmountToIncreamentWishes = currentMoney.amountToIncreamentWishes;
       upgradeCost.text = currentMoney.upgradeCost.ToString();
+      resetButton.enabled = false;
     }
     else if (currentMoney.name == "Silver")
     {
       AmountToIncreamentMoney = currentMoney.amountToIncreamentMoney;
       AmountToIncreamentWishes = currentMoney.amountToIncreamentWishes;
       upgradeCost.text = currentMoney.upgradeCost.ToString();
+      resetButton.enabled = false;
     }
 
     else if (currentMoney.name == "GoldCoin")
@@ -71,12 +81,14 @@ public class ResourceTracker : MonoBehaviour
       AmountToIncreamentMoney = currentMoney.amountToIncreamentMoney;
       AmountToIncreamentWishes = currentMoney.amountToIncreamentWishes;
       upgradeCost.text = currentMoney.upgradeCost.ToString();
+      resetButton.enabled = false;
     }
     else if (currentMoney.name == "Crypto")
     {
       AmountToIncreamentMoney = currentMoney.amountToIncreamentMoney;
       AmountToIncreamentWishes = currentMoney.amountToIncreamentWishes;
       upgradeCost.text = currentMoney.upgradeCost.ToString();
+      resetButton.enabled = false;
     }
     else if (currentMoney.name == "Uranium")
     {
@@ -118,37 +130,63 @@ public class ResourceTracker : MonoBehaviour
   }
   public void upgradeMPS()
   {
-    if (Money >= upgradeMPScost && upgradeMPScost == 100)
+    if (Money >= upgradeMPScost)
     {
       Money -= upgradeMPScost;
       GainPerSecond += 10f;
-      upgradeMPScost = 500;
+      upgradeMPScost *= 2.5f ;
     }
-    if (Money >= upgradeMPScost && upgradeMPScost == 1000)
-    {
-      Money -= upgradeMPScost;
-      GainPerSecond += 30f;
-      upgradeMPScost = 1000;
-    }
+    
 
   }
   public void upgradeWPS()
   {
-    if (Wishes >= upgradeWPScost && upgradeWPScost == 100)
+    if (Wishes >= upgradeWPScost)
     {
       Wishes -= upgradeWPScost;
       wishesPerSecond += 5f;
-      upgradeWPScost = 250;
-    }
-    if (Wishes >= upgradeWPScost && upgradeWPScost == 1000)
-    {
-      Wishes -= upgradeWPScost;
-      GainPerSecond += 20f;
-      upgradeMPScost = 1000;
+      upgradeWPScost *= 2.5f;
+
     }
   }
   public void QuitGame() 
   {
     Application.Quit();
   }
+  public void ResetResources() 
+  {
+    resets += 1;
+    Money = 0;
+    Wishes = 0;
+    currentMoney = coins[0];
+    GainPerSecond *= 2f;
+    wishesPerSecond *= 2f;
+    upgradeWPScost = 100f;
+    upgradeMPScost = 100f;
+
+  }
+  public void OpenCredits() 
+  {
+    
+    creditsImage.enabled = true;
+  }
+  public void CloseCredits() 
+  {
+    
+    creditsImage.enabled = false;
+  }
+  public void playAudioSource() 
+  {
+    aud.Play();
+  }
+  public void showGains() 
+  {
+    passiveGain.enabled = true;
+
+  }
+  public void hideGains()
+  {
+    passiveGain.enabled = false;
+  }
+
 }
