@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class ResourceTracker : MonoBehaviour
 {
   //values for resources 
@@ -28,6 +29,9 @@ public class ResourceTracker : MonoBehaviour
   public Canvas passiveGain;
   public float resets;
   public Text resetstxt;
+  public TMP_Text MPS;
+  public TMP_Text WPS;
+  public TMP_Text MoneyValue;
   private void Awake()
   {
     
@@ -50,6 +54,9 @@ public class ResourceTracker : MonoBehaviour
 
   private void Update()
   {
+    MoneyValue.text = currentMoney.amountToIncreamentMoney.ToString() + "$ Coin Value";
+    WPS.text = wishesPerSecond.ToString();
+    MPS.text = GainPerSecond.ToString();
     resetstxt.text = resets.ToString();
     CurrentCoin.sprite = currentMoney.coinImage;
     MPSupgrade.text = upgradeMPScost.ToString();

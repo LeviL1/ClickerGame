@@ -8,7 +8,8 @@ public class GainMoneyPerSecond : MonoBehaviour
   public System.DateTime lastTime;
   public Text moneygainwhileaway;
   public Text wishesgainwhileaway;
-  
+  public bool inMouseDown = false;
+  public bool repeating = false;
   private void Awake()
   {
     if (PlayerPrefs.HasKey("Money") && PlayerPrefs.HasKey("Wishes") && PlayerPrefs.HasKey("MPS") && PlayerPrefs.HasKey("WPS"))
@@ -84,10 +85,26 @@ public class GainMoneyPerSecond : MonoBehaviour
       moneygainwhileaway.text = moneyToAdd.ToString();
       wishesgainwhileaway.text = wishesToadd.ToString();
     }
+    if (PlayerPrefs.HasKey("Resets")) 
+    {
+      ResourceTracker.instance.resets = PlayerPrefs.GetFloat("Resets");
+    }
     
   }
   private bool ShouldEarnPerSec;
- 
+  private void OnMouseDown()
+  {
+
+    inMouseDown = true;
+      
+    
+  }
+  private void OnMouseUp()
+  {
+
+    inMouseDown = false;
+  }
+  
   private void FixedUpdate()
   {
     
@@ -96,8 +113,29 @@ public class GainMoneyPerSecond : MonoBehaviour
       ResourceTracker.instance.GainMoneyPerSecAndWishes();
     }
   }
+  private void Update()
+  {
+    if (inMouseDown == true && !repeating)
+    {
+      InvokeRepeating("gainMoneyAndWishes", 0.1f, 1f);
+
+    }
+    else
+    {
+      repeating = false;
+      CancelInvoke("gainMoneyAndWishes");
+    }
+  }
+  public void gainMoneyAndWishes() 
+  {
+    repeating = true;
+    ResourceTracker.instance.Money += ResourceTracker.instance.currentMoney.amountToIncreamentMoney / 60f;
+    ResourceTracker.instance.Wishes += ResourceTracker.instance.currentMoney.amountToIncreamentWishes / 60f;
+  }
+  
   private void OnApplicationQuit()
   {
+    PlayerPrefs.SetFloat("Resets", ResourceTracker.instance.resets);
     PlayerPrefs.SetString("Date", System.DateTime.Now.ToString());
     PlayerPrefs.SetFloat("Money", ResourceTracker.instance.Money);
     PlayerPrefs.SetFloat("Wishes", ResourceTracker.instance.Wishes);
@@ -122,6 +160,8 @@ public class GainMoneyPerSecond : MonoBehaviour
       ShouldEarnPerSec = true;
     }
   }
+ 
   
+
 
 }
